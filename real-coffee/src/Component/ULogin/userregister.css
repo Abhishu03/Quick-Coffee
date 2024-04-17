@@ -1,0 +1,45 @@
+.sss{
+  display: flex;
+  justify-content: center;
+  margin-top: 43px;
+}
+.main-box{
+  width:354px;
+  /* border: #ccc 2px solid; */
+}
+.plholder {
+  margin-bottom: 15px;
+}
+
+.plholder > div {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+input[type='text'] {
+  width: calc(100% - 25px);
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.nextbt {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nextbt:hover {
+  background-color: #0056b3;
+}
+
+/* Adjust link styles */
+.nextbt a {
+  color: #fff;
+  text-decoration: none;
+}

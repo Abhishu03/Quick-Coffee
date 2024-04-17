@@ -1,0 +1,68 @@
+.mainbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-top: 95px;
+    
+  }
+
+.compneylog{
+    margin-left: 70px;
+}
+.compneylog img {
+    width: 242px;
+    border-radius: 12px;
+  }
+
+  /* .logindata {
+   
+  }
+   */
+  .phoneno,
+  .lipass {
+    margin-bottom: 15px;
+  }
+  
+  .phoneno > div,
+  .lipass > div {
+    font-weight: bold;
+  }
+  
+  input[type='text'] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .button-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bt-lg,
+  .bt-reg {
+    padding: 8px 16px;
+    margin-bottom: 8px;
+    border: none;
+    width: 165px;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .bt-lg:hover,
+  .bt-reg:hover {
+    background-color: #0056b3;
+  }
+
+  .bt-reg a{
+    text-decoration: none;
+    color: #fff;
+  }
+  

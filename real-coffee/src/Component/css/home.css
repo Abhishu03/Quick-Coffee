@@ -1,0 +1,186 @@
+/* a {
+    text-decoration: none;
+} */
+.HomeBody{
+    display: grid;
+    flex-direction: column;
+    
+    /* margin-top: 76px; */
+}
+.Banner { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #884A39;
+    position: relative; 
+  }
+  
+  .mainbnaaerr {
+    max-width: 100%; 
+    display: block; 
+    border-radius: 12px;
+  }
+  
+.Banner button{
+    position: absolute;
+    bottom: 40px; 
+    height: 53px;
+    width: 167px;
+    font-size: larger;
+    background-color: #2D9596; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+.Banner p{
+    font-size: 84px;
+    top: 0;
+    font-family: cursive;
+    position: absolute;
+}
+
+.Banner button:hover{
+    background-color: #1d899c; 
+    height: 55px;
+    width: 169px;
+}
+
+.Banner button a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.text-after-banner{
+    text-align: center;
+    font-size: larger;
+    font-family: cursive;
+    margin: 22px 0px 22px ;
+}
+
+.product-group{
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr 1fr ;
+}
+
+.product-box{
+    /* border: black 2px solid; */
+    margin: 12px 19px ; 
+    text-align: center;
+    background-color: rgb(253, 235, 214);
+    border-radius: 23px;
+}
+
+.product-box:hover{
+    background-color: rgb(254, 208, 152);
+}
+
+.productimg{
+    height: 350px;
+    width: 350px;
+    border-radius: 23px;
+    padding-top:12px ;
+
+}
+
+.product-name{
+    font-size: larger;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+}
+
+
+.product-box button {
+    margin-bottom: 12px;
+    height: 43px;
+    width: 127px;
+    font-size: larger;
+    background-color: #2D9596;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 19px;
+    cursor: pointer;
+}
+
+.product-box button:hover{
+    background-color: #1d899c; 
+}
+
+.product-box button a {
+    text-decoration: none;
+    color: aliceblue;
+    width: auto;
+}
+
+.text-b {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 18px;
+    font-family: cursive;
+}
+.text-b div {
+    padding-bottom: 12px;
+}
+
+.reviewbox{
+    display: flex;
+    flex-direction: column;
+}
+
+.review{
+    text-decoration: underline;
+    font-size: 31px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+
+}
+
+.text{
+    border-radius: 42px;
+    padding: 12px;
+    background-color: #ccffec;
+    font-family: cursive;
+    margin: 18px;
+}
+
+.Clogo{
+    height: 75px;
+    width: 75px;
+    /* border-radius: 15px; */
+}
+.Clogo:hover{
+    cursor: pointer;
+}
+
+.thankyou{
+    font-weight: 600;
+
+}
+
+.reviewbt{
+    margin-bottom: 12px;
+    height: 43px;
+    width: max-content;
+    font-size: large;
+    background-color: rgb(253, 235, 214);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 19px;
+    cursor: pointer;
+}
+
+.reviewbt:hover{
+    background-color: rgb(254, 208, 152);
+}
+
+.reviewbt a {
+    text-decoration: none;
+    color: #884A39;
+}

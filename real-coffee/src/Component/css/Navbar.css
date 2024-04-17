@@ -1,0 +1,41 @@
+.main{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    background-color: #884A39;
+}
+.logo{
+    padding: 10px 0px 0px 8px ;
+}
+.Clogo{
+    height: 75px;
+    width: 75px;
+    border-radius: 50px;
+}
+
+.navbarlist {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.userlogo {
+    height: 24px;
+}
+
+.bt{
+    font-family: cursive;
+    margin: 0px 16px 0px 16px;
+    height: 31px;
+    font-size: larger;
+    align-self: center;
+    font-weight: bolder;
+}
+
+.bt:hover{
+    cursor: pointer;
+    font-size: 21px;
+}
+.bt a {
+    text-decoration: none;
+    color: black;
+}

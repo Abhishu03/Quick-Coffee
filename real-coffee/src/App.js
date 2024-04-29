@@ -5,6 +5,7 @@ import { Route , Router, Routes} from 'react-router-dom';
 import Home from './Component/Home';
 import ProductOne from './Component/Productpage';
 import Navbar from './Component/Navbar';
+import Footer from './Component/Footer';
 import Aboutus from './Component/Aboutus';
 import Bestseller from './Component/Bestseller';
 import Bundle from './Component/ProductCatogory/Bundle';
@@ -15,6 +16,10 @@ import CostomerReview from './Component/ProductCatogory/Review';
 import Userlogin from './Component/ULogin/Userlogin';
 import Userregister from './Component/ULogin/Userregister';
 import PasswordHolder from './Component/ULogin/PasswordHolder';
+import Productimgin from './Component/Productdtin';
+import Cart from './Component/Cart';
+import ProductaddInstantCoffee from './Component/AddProduct/InstantcoffeeProductadd';
+import AddProductsHolder from './Component/AddProduct/ProductAddHolder';
 
 
 
@@ -40,8 +45,15 @@ function App() {
       <Route path='/ULogin/Userlogin' exact element={<Userlogin/>}/>
       <Route path='/ULogin/Userregister' exact element={<Userregister/>}/>
       <Route path='/ULogin/passwordholder' exact element={<PasswordHolder/>}/>
-
+      <Route path='/ProductDetailsIn' exact element={<Productimgin/>}/>
+      <Route path='/cart' exact element={<Cart/>}/>
+      <Route path='/AddProduct/instantcoffeeadd' exact element={<ProductaddInstantCoffee/>}/>
+      <Route path='/AddproductsHolder' exact element={<AddProductsHolder/>}/>
     </Routes>
+
+    <div>
+      <Footer/>
+    </div>
 
 
    </>

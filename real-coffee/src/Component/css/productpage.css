@@ -1,0 +1,29 @@
+.main-box-ics {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .sub1 {
+    background-color: #f9f9f9;
+    padding: 10px;
+  }
+  
+  .sub2 {
+    padding: 10px;
+  }
+  
+  .ics-tableheading-row {
+    background-color: #ddd;
+  }
+  
+  .ics-tableheading {
+    padding: 8px;
+  }
+  
+  /* Additional styling for the image */
+  .product-img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  

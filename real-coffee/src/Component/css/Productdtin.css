@@ -1,0 +1,42 @@
+.container {
+  margin-top: 20px;
+}
+
+.col-md-a {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.mb-d {
+  margin-bottom: 20px;
+}
+
+.mbc {
+  margin-bottom: 15px;
+}
+
+.col-sm {
+  font-weight: bold;
+}
+
+.col-sm-acc {
+  margin-top: 5px;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}

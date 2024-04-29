@@ -1,0 +1,35 @@
+.main{
+    background-color: #884A39;
+}
+.Clogo{
+    height: 75px;
+    width: 75px;
+    /* border-radius: 15px; */
+}
+.Clogo:hover{
+    cursor: pointer;
+}
+
+.thankyou{
+    font-weight: 600;
+
+}
+
+.social-logo{
+    height: 40px;
+    width: 40px;
+    border-radius: 52px;
+    margin: 0 12px 0 12px;
+}
+
+.social-logo-a{
+    height: 34px;
+    width: 34px;
+    border-radius: 52px;
+    margin: 0 12px 0 12px;
+}
+
+.social-holder{
+    margin-top: 23px;
+    display: flex;
+}

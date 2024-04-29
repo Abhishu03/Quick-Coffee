@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ShopModel;
 use App\Models\User;
+use App\Models\Image;
 use App\Models\pinstantcoffee;
+use App\Models\pinstantcoffeeone;
 use App\Models\pcoldbrew;
 use App\Models\filtercoffee;
 use App\Models\bundles;
 use App\Models\userReview;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\InstantCoffeeRequest;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
+// $url = route('C:\abhi\Quick coffee\real-coffee-backend\storage\app\public');
+
 
 class CoffeeShopController extends Controller
 {
@@ -20,7 +28,7 @@ class CoffeeShopController extends Controller
         $shop_user['phnumber']=$request->phnumber;
 
         ShopModel::create($shop_user);
-        return response()->json(['msg'=>$shop_user] , 200);
+        return response()->json(['data'=>$shop_user] , 200);
     }
 
     public function password(Request $request){
@@ -31,14 +39,37 @@ class CoffeeShopController extends Controller
         return response()->json(['msg'=>$enterpassword] , 200);
     }
 
+
+    // public function index()
+    // {
+    //    // All Product
+    //    $products = pinstantcoffee::all();
+      
+    //    // Return Json Response
+    //    return response()->json([
+    //       'products' => $products
+    //    ],200);
+    // }
+
+
     public function instantcoffee(Request $request){
+        $request->validate([
+            'product_img.*' => 'mimes:png,jpg,jpeg,svg,webp'
+        ]);
+
+        $imageName = time().$request->file('product_img')->getClientOriginalName();
+
+        Storage::disk('public')->put($imageName, file_get_contents($request->product_img));
+
         $productinstantcoffee['product_name']=$request->product_name;
+        $productinstantcoffee['product_img']=$imageName;
         $productinstantcoffee['product_price']=$request->product_price;
         $productinstantcoffee['product_description']=$request->product_description;
 
         pinstantcoffee::create($productinstantcoffee);
         return response()->json(['msg'=>$productinstantcoffee] , 200);
     }
+
 
     public function coldbrew(Request $request){
         $pcoldbrew['product_name']=$request->product_name;
@@ -78,7 +109,28 @@ class CoffeeShopController extends Controller
     public function getinstantcoffee(){
         $getdata =pinstantcoffee::get();
         return response()->json(["msg"=> $getdata] , 200);
-
     }
+
+    public function getinstantcoffeeone($product_name){
+        {
+            $user = pinstantcoffee::where('product_name', $product_name)->first();
+            if ($user) {
+                return response()->json([
+                    'data' => $user,
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'User not found.',
+                ], 404);
+            }
+        }
+    }
+
+    public function deleteinstantcoffee(Request $request , $id){
+        $deledata =pinstantcoffee::where('id' ,$id )->first()->delete();
+        return response()->json(["data"=>$deledata]);
+    }
+
 }
 

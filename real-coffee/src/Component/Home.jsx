@@ -8,6 +8,7 @@ import Clogo from '../Banner/logo-color.png';
 import { Link , useNavigation } from 'react-router-dom';
 import axios from 'axios';
 import './css/home.css';
+
 function Home() {
   return (
     <div className='HomeBody'>
@@ -55,13 +56,6 @@ function Home() {
         <button className='reviewbt'><Link to='/ProductCatagory/CostomerReview'><a>Add Review</a></Link></button>
 
 </div>
-      </div>
-      <div className='logo'>
-        <img  className='Clogo' src={Clogo} />
-      </div>
-      <div className='thankyou'>
-        <div>Thank you for visiting our website</div>
-        <div>Email us - Coffee@gmail.com</div>
       </div>
     </div>
   )

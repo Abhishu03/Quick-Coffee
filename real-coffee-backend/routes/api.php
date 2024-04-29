@@ -25,10 +25,11 @@ Route::post('/register',[CoffeeShopController::class ,'register']);
 Route::post('/password',[CoffeeShopController::class ,'password']);
 
 Route::post('/instantcoffee' ,[CoffeeShopController::class , 'instantcoffee']);
+Route::get('/instantcoffee' , [CoffeeShopController::class , 'getinstantcoffee']);
+Route::get('/instantcoffee/{product_name}' , [CoffeeShopController::class , 'getinstantcoffeeone']);
+Route::delete('/instantcoffee/{id}' , [CoffeeShopController::class , 'deleteinstantcoffee']);
+
 Route::post('/coldbrew' ,[CoffeeShopController::class , 'coldbrew']);
 Route::post('/filtercoffee' ,[CoffeeShopController::class , 'filtercoffee']);
 Route::post('/bundle' ,[CoffeeShopController::class , 'bundle']);
 Route::post('/review' ,[CoffeeShopController::class , 'review']);
-
-
-Route::get('/instantcoffee' , [CoffeeShopController::class , 'getinstantcoffee']);

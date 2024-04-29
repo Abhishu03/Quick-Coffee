@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pinstant_coffees', function (Blueprint $table) {
+        Schema::create('_pinstantcoffee', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
-            //$table->string('imagename');  
+            $table->string('product_img');  
             $table->integer('product_price');
             $table->string('product_description')->nullable();
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pinstant_coffees');
+        Schema::dropIfExists('_pinstantcoffee');
     }
 };

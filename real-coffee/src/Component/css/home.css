@@ -37,9 +37,11 @@
   }
 
 .Banner p{
-    font-size: 84px;
+    font-size: 122px;
     top: 0;
-    font-family: cursive;
+    font-weight: 400;
+    font-family: "Allura", cursive;
+    text-decoration: underline 2px solid;
     position: absolute;
 }
 

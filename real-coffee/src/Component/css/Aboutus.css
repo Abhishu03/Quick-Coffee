@@ -1,52 +1,50 @@
-/* Style for the container */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Style for the "our story" heading */
-  .our-story-heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  /* Style for the paragraphs */
-  p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-  }
-  
-  /* Style for the "login as admin" section */
-  .login-section {
-    margin-top: 30px;
-  }
-  
-  .login-section div {
-    font-weight: bold;
-  }
-  
-  /* Style for the login button */
-  .login-button {
-    margin-top: 10px;
-  }
-  
-  .login-button a {
-    text-decoration: none;
-    color: #fff;
-  }
-  
-  .login-button button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-button button:hover {
-    background-color: #0056b3;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.our-story-heading {
+  font-family: "Allura", cursive;
+  font-size: 37px;
+  font-weight: bold;
+}
+
+.login-section {
+  margin-top: 30px;
+}
+
+.login-section > div {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.paragraph-ke-liye{
+  font-family: "Satisfy", cursive;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 22px;
+}

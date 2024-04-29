@@ -14,7 +14,7 @@ function Home() {
     <div className='HomeBody'>
       <div className='Banner'>
        <img className='mainbnaaerr' src={Mainbnaaer}></img>
-        <p>Taste the best</p>
+        <p>~~Taste the best~~</p>
         <button><Link to='/bestseller'><a>Shop Now</a></Link></button>
       </div>
       <div className='text-after-banner'>

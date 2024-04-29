@@ -42,7 +42,7 @@ function Productpage() {
                   <tr key={index}>
                     <td>{instantcoffee.product_name}</td>
                     <td>{instantcoffee.product_price}</td>
-                    <td><img src={`http://127.0.0.1:8000/storage/app/public/${instantcoffee.product_img}`} alt="" height={91} width={90} /></td>  
+                    <td><img src={instantcoffee.product_img} alt="" height={91} width={90} /></td>    
                     <td>{instantcoffee.product_description}</td>
                   </tr>
                 ))

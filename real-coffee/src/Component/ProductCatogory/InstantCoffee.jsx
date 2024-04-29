@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function InstantCoffee() {
 
-    const[product , setProduct]= useState([]);
+  const[product , setProduct]= useState([]);
   useEffect(()=>{
     getproduct();
   },[]);
@@ -21,36 +21,37 @@ function InstantCoffee() {
     })
   }
 
+  
   return (
     <React.Fragment>
-    <div className='main-box-ics'>
-      <div className='sub1'>
-        <div className='sub2'>
-          <h4>Product List</h4>
-          <thead>
-            <tr className='ics-tableheading-row'>
-              <th className='ics-tableheading' scope='col'>Product Name</th>
-              <th className='ics-tableheading' scope='col'>Product Price</th>
-              <th className='ics-tableheading' scope='col'>Product image</th>
-              <th className='ics-tableheading' scope='col'>Product Description</th>
-            </tr>
-          </thead>
-          <tbody>                       
-            {
-              product.map((instantcoffee, index)=> (
-                <tr key={index}>
-                  <td>{instantcoffee.product_name}</td>
-                  <td>{instantcoffee.product_price}</td>
-                  <td><img src={`http://127.0.0.1:8000/storage/app/public/${instantcoffee.product_img}`} alt="" height={91} width={90} /></td>  
-                  <td>{instantcoffee.product_description}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </div>    
+      <div className='main-box-ics'>
+        <div className='sub1'>
+          <div className='sub2'>
+            <h4>Product List</h4>
+            <thead>
+              <tr className='ics-tableheading-row'>
+                <th className='ics-tableheading' scope='col'>Product Name</th>
+                <th className='ics-tableheading' scope='col'>Product Price</th>
+                <th className='ics-tableheading' scope='col'>Product image</th>
+                <th className='ics-tableheading' scope='col'>Product Description</th>
+              </tr>
+            </thead>
+            <tbody>                       
+              {
+                product.map((instantcoffee, index)=> (
+                  <tr key={index}>
+                    <td>{instantcoffee.product_name}</td>
+                    <td>{instantcoffee.product_price}</td>
+                    <td><img src={instantcoffee.product_img} alt="" height={91} width={90} /></td>    
+                    <td>{instantcoffee.product_description}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </div>    
+        </div>
       </div>
-    </div>
-  </React.Fragment>
+    </React.Fragment>
   )
 }
 

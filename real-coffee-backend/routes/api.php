@@ -25,7 +25,7 @@ Route::post('/register',[CoffeeShopController::class ,'register']);
 Route::post('/password',[CoffeeShopController::class ,'password']);
 
 Route::post('/instantcoffee' ,[CoffeeShopController::class , 'instantcoffee']);
-Route::get('/instantcoffee' , [CoffeeShopController::class , 'getinstantcoffee']);
+Route::get('/instantcoffee' , [CoffeeShopController::class , 'getinstantcoffee']);   
 Route::get('/instantcoffee/{product_name}' , [CoffeeShopController::class , 'getinstantcoffeeone']);
 Route::delete('/instantcoffee/{id}' , [CoffeeShopController::class , 'deleteinstantcoffee']);
 

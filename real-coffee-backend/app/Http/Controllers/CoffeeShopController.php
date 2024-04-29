@@ -108,6 +108,9 @@ class CoffeeShopController extends Controller
     
     public function getinstantcoffee(){
         $getdata =pinstantcoffee::get();
+        foreach($getdata as $key => $value){
+            $getdata[$key]['product_img'] = env('APP_IMG_PATH').$value['product_img'];
+        }
         return response()->json(["msg"=> $getdata] , 200);
     }
 

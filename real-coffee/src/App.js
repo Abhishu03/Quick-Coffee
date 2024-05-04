@@ -18,8 +18,12 @@ import Userregister from './Component/ULogin/Userregister';
 import PasswordHolder from './Component/ULogin/PasswordHolder';
 import Productimgin from './Component/Productdtin';
 import Cart from './Component/Cart';
-import ProductaddInstantCoffee from './Component/AddProduct/InstantcoffeeProductadd';
 import AddProductsHolder from './Component/AddProduct/ProductAddHolder';
+import ProductaddInstantCoffee from './Component/AddProduct/InstantcoffeeProductadd';
+import ProductaddColdBrew from './Component/AddProduct/ColdBrewProductAdd';
+import Productaddfiltercoffee from './Component/AddProduct/Filtercoffeeproductadd';
+import ProductAddbundle from './Component/AddProduct/bundleproductadd';
+import Adminauth from './Component/SuplimentryPage/adminauth';
 
 
 
@@ -47,8 +51,12 @@ function App() {
       <Route path='/ULogin/passwordholder' exact element={<PasswordHolder/>}/>
       <Route path='/ProductDetailsIn' exact element={<Productimgin/>}/>
       <Route path='/cart' exact element={<Cart/>}/>
-      <Route path='/AddProduct/instantcoffeeadd' exact element={<ProductaddInstantCoffee/>}/>
       <Route path='/AddproductsHolder' exact element={<AddProductsHolder/>}/>
+      <Route path='/AddProduct/instantcoffeeadd' exact element={<ProductaddInstantCoffee/>}/>
+      <Route path='/AddProduct/coldbrewadd' exact element={<ProductaddColdBrew/>}/>
+      <Route path='/AddProduct/filtercoffeeadd' exact element={<Productaddfiltercoffee/>}/>
+      <Route path='/AddProduct/bundleadd' exact element={<ProductAddbundle/>}/>
+      <Route path='/suplimentry/adminauth' exact element={<Adminauth/>}/>
     </Routes>
 
     <div>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Component } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import './AddProductCSS/InstantCoffeeProductadd.css';  
 
 function InstantcoffeeProductadd() {
   const[pname , setPname] = useState('');
@@ -9,9 +10,11 @@ function InstantcoffeeProductadd() {
   const[Pimg , setImage] = useState('');
   const[pdescription , setPpdescription] = useState('');
   const[message , setMessage] = useState('');
+  const formRef = useRef('');
+ 
 
-  const uploadporduct = async() =>{
-    // alert("product added");
+  const uploadporduct = async() =>{    
+    alert("product added", resetForm());
     console.log(Pimg);
     const formData= new FormData();
     formData.append('product_name', pname);
@@ -27,13 +30,23 @@ function InstantcoffeeProductadd() {
       console.log(responce);
       setMessage(responce.message);
     }
-
+    
   }
 
   const handleSubmit = async(e)=> {
     e.preventDefault();
     await uploadporduct();
   }
+
+  const resetForm = () => {
+    setPname('');
+    setPrice('');
+    setImage('');
+    setPpdescription('');
+    formRef.current.reset(); 
+  }
+
+
   return (
     <React.Fragment>
     <div className="container">
@@ -42,7 +55,7 @@ function InstantcoffeeProductadd() {
             <h5 className="mb-d">Add Product in Instant Coffee </h5> 
             {/* <p className="text-warning">{ message}</p>*/}
              
-                <form onSubmit={handleSubmit}>             
+                <form ref={formRef} onSubmit={handleSubmit}>             
                 <div className="mbc">
                 <label  className="col-sm">Product Name </label>
                 <div className="col-sm-acc">
@@ -60,7 +73,7 @@ function InstantcoffeeProductadd() {
                 <div className="mbc">
                 <label  className="col-sm">Product Image</label>
                 <div className="col-sm-acc">
-                <input type="file" className="form-control" onChange={(e)=>setImage(e.target.files[0])} />
+                <input type="file" className="form-control-img" onChange={(e)=>setImage(e.target.files[0])} />
                 </div>
                 </div>
 

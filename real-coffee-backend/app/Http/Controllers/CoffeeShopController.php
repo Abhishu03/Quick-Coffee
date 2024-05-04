@@ -14,6 +14,8 @@ use App\Models\bundles;
 use App\Models\userReview;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\InstantCoffeeRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,26 +34,16 @@ class CoffeeShopController extends Controller
     }
 
     public function password(Request $request){
-        $enterpassword['phnumber']=$request->phnumber;
+        $enterpassword['phonenumber']=$request->phonenumber;
         $enterpassword['password']=Hash::make($request->password);
 
         User::create($enterpassword);
         return response()->json(['msg'=>$enterpassword] , 200);
     }
 
+    
 
-    // public function index()
-    // {
-    //    // All Product
-    //    $products = pinstantcoffee::all();
-      
-    //    // Return Json Response
-    //    return response()->json([
-    //       'products' => $products
-    //    ],200);
-    // }
-
-
+    // Instant Coffee ka Controller 
     public function instantcoffee(Request $request){
         $request->validate([
             'product_img.*' => 'mimes:png,jpg,jpeg,svg,webp'
@@ -70,42 +62,6 @@ class CoffeeShopController extends Controller
         return response()->json(['msg'=>$productinstantcoffee] , 200);
     }
 
-
-    public function coldbrew(Request $request){
-        $pcoldbrew['product_name']=$request->product_name;
-        $pcoldbrew['product_price']=$request->product_price;
-        $pcoldbrew['product_description']=$request->product_description;
-
-        pcoldbrew::create($pcoldbrew);
-        return response()->json(['msg'=>$pcoldbrew] , 200);
-    }
-
-    public function filtercoffee(Request $request){
-        $pfiltercoffee['product_name']=$request->product_name;
-        $pfiltercoffee['product_price']=$request->product_price;
-        $pfiltercoffee['product_description']=$request->product_description;
-
-        filtercoffee::create($pfiltercoffee);
-        return response()->json(['msg'=>$pfiltercoffee] , 200 );
-    }
-
-    public function bundle(Request $request){
-        $pbundle['product_name']=$request->product_name;
-        $pbundle['product_price']=$request->product_price;
-        $pbundle['product_description']=$request->product_description;
-
-        bundles::create($pbundle);
-        return response()->json(['msg'=>$pbundle] , 200 );
-    }
-
-    public function review(Request $request){
-        $ppreview['reviewername'] = $request->reviewername;
-        $ppreview['productreview'] = $request->productreview;
-    
-        userReview::create($ppreview);
-        return response()->json(['msg' => $ppreview], 200);
-    }
-    
     public function getinstantcoffee(){
         $getdata =pinstantcoffee::get();
         foreach($getdata as $key => $value){
@@ -135,5 +91,104 @@ class CoffeeShopController extends Controller
         return response()->json(["data"=>$deledata]);
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    // Cold Brew ka controller 
+    public function coldbrew(Request $request){
+        $request->validate([
+            'product_img.*' => 'mimes:png,jpg,jpeg,svg,webp'
+        ]);
+
+        $imageName = time().$request->file('product_img')->getClientOriginalName();
+
+        Storage::disk('public')->put($imageName, file_get_contents($request->product_img));
+
+        $productcoldbrew['product_name']=$request->product_name;
+        $productcoldbrew['product_img']=$imageName;
+        $productcoldbrew['product_price']=$request->product_price;
+        $productcoldbrew['product_description']=$request->product_description;
+
+        pcoldbrew::create($productcoldbrew);
+        return response()->json(['msg'=>$productcoldbrew] , 200);
+    }
+
+    public function getcoldbrew(){
+        $getdata =pcoldbrew::get();
+        foreach($getdata as $key => $value){
+            $getdata[$key]['product_img'] = env('APP_IMG_PATH').$value['product_img'];
+        }
+        return response()->json(["msg"=> $getdata] , 200);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///// Filter Coffee ka controller
+    public function filtercoffee(Request $request){
+        $request->validate([
+            'product_img.*' => 'mimes:png,jpg,jpeg,svg,webp'
+        ]);
+
+        $imageName = time().$request->file('product_img')->getClientOriginalName();
+
+        Storage::disk('public')->put($imageName, file_get_contents($request->product_img));
+
+        $productfiltercoffee['product_name']=$request->product_name;
+        $productfiltercoffee['product_img']=$imageName;
+        $productfiltercoffee['product_price']=$request->product_price;
+        $productfiltercoffee['product_description']=$request->product_description; 
+
+        filtercoffee::create($productfiltercoffee);
+        return response()->json(['msg'=>$productfiltercoffee] , 200);
+    }
+
+    public function getfiltercoffee(){
+        $getdata =filtercoffee::get();
+        foreach($getdata as $key => $value){
+            $getdata[$key]['product_img'] = env('APP_IMG_PATH').$value['product_img'];
+        }
+        return response()->json(["msg"=> $getdata] , 200);
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///// Bundle 
+    public function bundle(Request $request){
+        $request->validate([
+            'product_img.*' => 'mimes:png,jpg,jpeg,svg,webp'
+        ]);
+
+        $imageName = time().$request->file('product_img')->getClientOriginalName();
+
+        Storage::disk('public')->put($imageName, file_get_contents($request->product_img));
+
+        $productbundle['product_name']=$request->product_name;
+        $productbundle['product_img']=$imageName;
+        $productbundle['product_price']=$request->product_price;
+        $productbundle['product_description']=$request->product_description;
+
+        bundles::create($productbundle);
+        return response()->json(['msg'=>$productbundle] , 200);
+    }
+
+    public function getbundle(){
+        $getdata =bundles::get();
+        foreach($getdata as $key => $value){
+            $getdata[$key]['product_img'] = env('APP_IMG_PATH').$value['product_img'];
+        }
+        return response()->json(["msg"=> $getdata] , 200);
+    }
+
+    //////////////////////////////////////////////////////////////
+
+    public function review(Request $request){
+        $ppreview['reviewername'] = $request->reviewername;
+        $ppreview['productreview'] = $request->productreview;
+    
+        userReview::create($ppreview);
+        return response()->json(['msg' => $ppreview], 200);
+    }
+    
 }
+   
 

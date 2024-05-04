@@ -1,12 +1,25 @@
 import React from 'react'
 import Clogo from '../Banner/logo-color.png';
 import Userlogo from '../Banner/user-icon.png';
+import Userlogout from '../Banner/userlogoutlogo.png';
 import Cartlogo from '../Banner/shopping-cart.png'
-import { Link , useNavigation } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/Navbar.css';
 
 function Navbar() {
+
+  const navigate = useNavigate();
+
+  const Userlogoutbt= ()=> {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('phonenumber');
+    navigate('/');
+  }
+
+  const Userloginbt= () => {
+    navigate('/ULogin/Userlogin');
+  }
   return (
     <div className='main'>
         <div className='logo'><Link to= '/'><img  className='Clogo' src={Clogo} /></Link></div>
@@ -15,7 +28,12 @@ function Navbar() {
             <li className='bt'><Link to='/bestseller'><a>Bestseller</a></Link></li>
             {/* <li className='bt'><Link to='/aboutus'><a>About Us</a></Link></li> */}
             <li className='bt'><Link to='/aboutus'><a>About Us</a></Link></li>
-            <li className='bt'><Link to= '/ULogin/Userlogin'><img  className='userlogo' src={Userlogo} /></Link></li>
+            <li className='bt'>
+              {sessionStorage.token?
+              (<img onClick={Userlogoutbt} className='userlogout' src={Userlogout}></img>): 
+              (<img src={Userlogo} onClick={Userloginbt} className='userlogo'  />) 
+            }
+            </li>
             <li className='bt'><Link to= '/cart'><img  className='cartlogo' src={Cartlogo} /></Link></li>
         </ul>
     </div>

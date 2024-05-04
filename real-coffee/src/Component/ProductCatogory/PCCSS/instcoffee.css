@@ -26,8 +26,8 @@
   
   .ics-tableheading-row th {
     padding: 10px;
-    background-color: #343a40;
-    color: #fff;
+    background-color: whitesmoke;
+    color: black;
   }
   
   .ics-tableheading-row th:nth-child(3) {

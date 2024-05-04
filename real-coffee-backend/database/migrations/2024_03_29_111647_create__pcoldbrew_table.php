@@ -9,12 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): void 
     {
         Schema::create('_pcoldbrew', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
-            //$table->string('imagename');
+            $table->string('product_img');  
             $table->integer('product_price');
             $table->string('product_description')->nullable();
             $table->timestamps();

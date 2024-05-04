@@ -5,25 +5,47 @@ import './AddProductCSS/productaddwalapage.css';
 function ProductAddHolder() {
   return (
     <div className="container">
-      <div className="product instantcofee-wala">
-        <div className="product-name">Instant Coffee</div>
-        <button className="button">
-          <Link to="/AddProduct/instantcoffeeadd">ADD</Link>
-        </button>
-      </div>
-      <div className="product coldbrew-wala">
-        <div className="product-name">Cold Brew</div>
-        <button className="button">ADD</button>
-      </div>
-      <div className="product filtercoffee-wala">
-        <div className="product-name">Filter Coffee</div>
-        <button className="button">ADD</button>
-      </div>
-      <div className="product bundle-wala">
-        <div className="product-name">Bundle</div>
-        <button className="button">ADD</button>
-      </div>
-    </div>
+
+<table>
+
+  <tr className="product-instantcofee-wala">
+    <td className='category-ka-name'>Instant Coffee</td>
+    <td>
+      <button className="button">
+          <Link to="/AddProduct/instantcoffeeadd">ADD Products</Link>
+      </button>
+    </td>
+  </tr>
+
+  <tr className="product-coldbrew-wala">
+    <td className='category-ka-name'>Cold Brew</td>
+    <td>
+      <button className="button">
+          <Link to='/AddProduct/coldbrewadd'>ADD Products</Link>
+      </button>
+    </td>
+  </tr>
+
+  <tr className="product-filtercoffee-wala">
+    <td className='category-ka-name'>Filter Coffee</td>
+    <td>
+      <button className="button">
+          <Link to="/AddProduct/filtercoffeeadd">ADD Products</Link>
+      </button>
+    </td>
+  </tr>
+
+  <tr className="product-bundle-wala">
+    <td className='category-ka-name'>Bundle</td>
+    <td>
+      <button className="button">
+          <Link to="/AddProduct/bundleadd">ADD Products</Link>
+      </button>
+    </td>
+  </tr>
+  
+</table>
+  </div>
   );
 }
 

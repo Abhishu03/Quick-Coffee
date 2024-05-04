@@ -22,6 +22,20 @@
     height: 24px;
 }
 
+.userlogo:hover{
+    height: 27px;
+    font-weight: bolder;
+}
+
+.userlogout{
+    height: 28px;
+}
+
+.userlogout:hover{
+    height: 31px;
+    font-weight: bolder;
+}
+
 .bt{
     font-family: cursive;
     margin: 0px 16px 0px 16px;
@@ -42,5 +56,11 @@
 
 .cartlogo{
     height: 27px;
+    margin-right: 5px;
+}
+
+.cartlogo:hover {
+    height: 30px;
+    font-weight: bolder;
     margin-right: 5px;
 }

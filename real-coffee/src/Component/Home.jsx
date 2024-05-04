@@ -6,6 +6,7 @@ import Bundle from '../Banner/Bundle.jpg';
 import Filtercoffee from '../Banner/filtercoffee.jpg';
 import Clogo from '../Banner/logo-color.png';
 import { Link , useNavigation } from 'react-router-dom';
+import { LinearGradient } from 'react-text-gradients'
 import axios from 'axios';
 import './css/home.css';
 
@@ -14,7 +15,7 @@ function Home() {
     <div className='HomeBody'>
       <div className='Banner'>
        <img className='mainbnaaerr' src={Mainbnaaer}></img>
-        <p>~~Taste the best~~</p>
+        <p><LinearGradient gradient={['to left', '#edf6f9 ,#1c1cc4']}>~~Divine and Flavorsome~~</LinearGradient></p>
         <button><Link to='/bestseller'><a>Shop Now</a></Link></button>
       </div>
       <div className='text-after-banner'>

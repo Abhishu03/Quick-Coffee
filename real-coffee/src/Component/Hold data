@@ -1,110 +1,103 @@
-import React, { useEffect, useState } from "react";
-import { Component } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './css/Productdtin.css'
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import './PCCSS/instcoffee.css';  
+import axios, { Axios } from 'axios';
+import swal from 'react-sweetalert2';
 
-function Productdtin() {
-  const[pname , setPname] = useState('');
-  const[pprice , setPrice] = useState('');
-  const[Pimg , setImage] = useState('');
-  const[pdescription , setPpdescription] = useState('');
-  const[message , setMessage] = useState('');
+function InstantCoffee() {
+  const [product_id , setProductid] = useState('');
+  const [phonenumber , setPhonenumber] = useState('');
+  const[product , setProduct]= useState([]);
+  
+  useEffect(()=>{
+    getproduct();
+  },[]);
 
-  const uploadporduct = async() =>{
-    // alert("product added");
-    console.log(Pimg);
-    const formData= new FormData();
-    formData.append('product_name', pname);
-    formData.append('product_price', pprice);
-    formData.append('product_img', Pimg);
-    formData.append('product_description' , pdescription);
+  const getproduct = () => {
+    axios.get("http://127.0.0.1:8000/api/instantcoffee")
+    .then((res)=>{
+      setProduct(res.data.msg);
+      // console.log(res.data.msg);
+    })
+    .catch((err)=> {
+      alert(`Error-01: ${err.res.data.message || 'data fail'}`); 
+    })
+  }
 
-    try{
-
-      const responce = await axios.post("http://127.0.0.1:8000/api/instantcoffee" , formData, {
-        headers:{'content-Type':"multipalpart/form-data"},
+  const SubmitAddtoCart = (productId) => {
+    axios.post("http://127.0.0.1:8000/api/addtocart", { product_id: productId, phonenumber: sessionStorage.getItem('phonenumber') })
+      .then((response) => {
+        if (response.status === 201) {
+          swal("Success", response.data.message, "success");
+        } else if (response.status === 409) {
+          swal("Conflict", response.data.message, "warning");
+        } else if (response.status === 401) {
+          swal("Error", response.data.message, "error");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        swal("Error", error.response ? error.response.data.message || 'Something went wrong' : 'Network error', "error");
       });
-  
-      if(responce){
-        console.log(responce);
-        setMessage(responce.message);
-  
-  
-  
-        setPname('');
-        setPrice('');
-        setImage('');
-        setPpdescription('');
-      }
-    }
-    catch (error) {
-      console.error(error);
-    }
-
-
-
-
-  }
+  };
 
   
 
-  const handleSubmit = async(e)=> {
-    e.preventDefault();
-    await uploadporduct();
-  }
 
+  // const SubmitAddtoCart = (e) => {
+  //   e.preventDefault();
+  //   axios.post("http://127.0.0.1:8000/api/addtocart", { product_id: product.id, phonenumber: sessionStorage.getItem('phonenumber') })
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         const updatedProductID = response.data.product_id;
+  //         const updatedPhoneNumber = response.data.phonenumber;
+  
+  //         setProductid(updatedProductID);
+  //         setPhonenumber(updatedPhoneNumber);
+  //       } else {
+  //         alert('Error 01');
+  //       }
+  //     }).catch((error) => {
+  //       console.error(error);
+  //       alert(`Error - Point 2: ${error.response ? error.response.data.message || 'Registration failed' : 'Network error'}`);
+  //     });
+  // }
+  
+
+
+  
   return (
     <React.Fragment>
-    <div className="container">
-        <div className="row">
-          <div className="col-md-a">
-            <h5 className="mb-d">Add Product in Instant Coffee </h5> 
-            {/* <p className="text-warning">{ message}</p>*/}
-             
-                <form onSubmit={handleSubmit}>             
-                <div className="mbc">
-                <label  className="col-sm">Product Name </label>
-                <div className="col-sm-acc">
-                <input type="text" className="form-control" onChange={ (e)=>setPname(e.target.value)}/>
-                </div>
-                </div>
-
-                <div className="mbc">
-                <label  className="col-sm">Product Price </label>
-                <div className="col-sm-acc">
-                <input type="text" className="form-control" onChange={(e)=>setPrice(e.target.value)}  />
-                </div>
-                </div>
-
-                <div className="mbc">
-                <label  className="col-sm">Product Image</label>
-                <div className="col-sm-acc">
-                <input type="file" className="form-control" onChange={(e)=>setImage(e.target.files[0])} />
-                </div>
-                </div>
-
-                <div className="mbc">
-                <label  className="col-sm">Product Description </label>
-                <div className="col-sm-acc">
-                <input type="text" className="form-control" onChange={(e)=>setPpdescription(e.target.value)}  />
-                </div>
-                </div>
-
-                <div className="mbc">
-                <label className="col-sm"></label>
-                <div className="col-sm-acc">
-                <button type="submit" className="btn-success">Submit</button>
-                </div>
-                </div>
-
-                </form>
-
-         </div>
+      <div className='main-box-ics'>
+        <div className='sub1'>
+          <div className='sub2'>
+            <h4>Instant Coffee</h4>
+            <thead>
+              <tr className='ics-tableheading-row'>
+                <th className='ics-tableheading' scope='col'>Product Name</th>
+                <th className='ics-tableheading' scope='col'>Product Price</th>
+                <th className='ics-tableheading' scope='col'>Product image</th>
+                <th className='ics-tableheading' scope='col'>Product Description</th>
+              </tr>
+            </thead>
+            <tbody>                       
+              {
+                product.map((instantcoffee, index)=> (
+                  <tr key={index}>
+                    <td>{instantcoffee.product_name}</td>
+                    <td>{instantcoffee.product_price}</td>
+                    <td><img src={instantcoffee.product_img} alt="" height={91} width={90} /></td>    
+                    <td>{instantcoffee.product_description}</td>
+                    <td><button onClick={SubmitAddtoCart}>Add to cart</button></td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </div>    
         </div>
-    </div>
-</React.Fragment>
+      </div>
+    </React.Fragment>
   )
 }
 
-export default Productdtin
+export default InstantCoffee

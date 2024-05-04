@@ -1,0 +1,46 @@
+.main-box-ics {
+    width: 100%;
+    margin: 20px auto;
+  }
+  
+  .sub1 {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sub2 {
+    overflow-x: auto;
+  }
+  
+  h4 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ics-tableheading-row th {
+    padding: 10px;
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .ics-tableheading-row th:nth-child(3) {
+    text-align: center;
+  }
+  
+  td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+  }
+  
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  

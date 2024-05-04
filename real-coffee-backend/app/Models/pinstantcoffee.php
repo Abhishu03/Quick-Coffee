@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class pinstantcoffee extends Model
 {
-    use HasFactory;
+    use HasFactory; 
 
     protected $table= '_pinstantcoffee';
     protected $fillable=[

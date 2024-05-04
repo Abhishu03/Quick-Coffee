@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './css/Aboutus.css';
 
 function Aboutus() {
+
   return (
     <div className="container">
       <div className="our-story-heading">Our Story</div>
@@ -17,7 +18,8 @@ function Aboutus() {
       <div className="login-section">
         <div>Login as admin</div>
         <button className="login-button">
-          <Link to='/AddproductsHolder'>Login</Link>
+          {/* <Link to='/AddproductsHolder'>Login</Link> */}
+          <Link to='/suplimentry/adminauth'>Login</Link>
         </button>
       </div>
     </div>

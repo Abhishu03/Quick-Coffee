@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class pcoldbrew extends Model
 {
-    use HasFactory;
+    use HasFactory; 
 
     protected $table= '_pcoldbrew';
     protected $fillable=[
-        'product_name' , 'product_price' , 'product_description'
-    ];
+        'product_name' ,'product_img', 'product_price' , 'product_description'
+   ];
 }

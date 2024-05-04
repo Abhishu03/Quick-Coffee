@@ -37,8 +37,11 @@
   }
 
 .Banner p{
-    font-size: 122px;
+    font-size: 112px;
     top: 0;
+    color: linear-gradient(to right, #000000, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-weight: 400;
     font-family: "Allura", cursive;
     text-decoration: underline 2px solid;

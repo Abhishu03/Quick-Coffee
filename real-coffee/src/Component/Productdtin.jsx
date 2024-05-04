@@ -32,10 +32,10 @@ function Productdtin() {
   
   
   
-        setPname('');
-        setPrice('');
-        setImage('');
-        setPpdescription('');
+        formData.setPname('');
+        formData.setPrice('');
+        formData.setImage('');
+        formData.setPpdescription('');
       }
     }
     catch (error) {

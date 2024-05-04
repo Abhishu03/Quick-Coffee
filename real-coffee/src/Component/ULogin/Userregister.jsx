@@ -1,33 +1,76 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+// import {useRef} from 'react';
 import { useState } from 'react';
 import './userregister.css';
+
 
 function Userregister() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phnumber, setPhonenumber] = useState('');
+  const [phonenumber , setPhonenumberaa] = useState('');
+  const [password, setPassword] = useState('');
+
+
+  const submitall = async (e) => {
+    e.preventDefault();
+    try {
+      await submitDetails();
+      await submitpassword();
+      alert('data added');
+    } catch (error) {
+      console.error(error);
+      alert('Error occurred - point 1');
+    }
+  };
+
 
   const submitDetails = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     axios.post('http://127.0.0.1:8000/api/register', { name, email, phnumber })
       .then((response) => {
         if (response.status === 200) {
           setName('');
           setEmail('');
           setPhonenumber('');
-          navigate('/ULogin/passwordholder'); 
+          // navigate('/ULogin/passwordholder'); 
         } else {
-          alert('error01');
+          alert('Error occored - point 2');
         }
       })
       .catch((error) => {
         console.error(error);
-        alert(`Error: ${error.response.data.message || 'Registration failed'}`);
+        alert(`Error - point 3: ${error.response.data.message || 'Registration failed'}`);
       });
+    
   };
+
+
+  const submitpassword = (e) => {
+    // e.preventDefault();
+    axios.post('http://127.0.0.1:8000/api/password', { phonenumber, password })
+      .then((response) => {
+        if (response.status === 200) {
+          setPhonenumberaa('');
+          setPassword('');
+        } else {
+          alert('Error occored - point 4');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(`Error - point 5: ${error.response.data.message || 'Registration failed'}`);
+      });
+    
+  };
+
+  
+
+  
+
 
   return (
     <div className='sss'>
@@ -42,9 +85,14 @@ function Userregister() {
         </div>
         <div className='plholder'>
           <div>Phone.NO : </div>
-          <input type='text' onChange={(event) => setPhonenumber(event.target.value)} placeholder='phone no'></input>
+          <input type='text' onChange={(event) => { setPhonenumber(event.target.value); 
+          setPhonenumberaa(event.target.value); }} placeholder='phone no'></input>
         </div>
-        <button onClick={submitDetails} className='nextbt'>Enter password</button>
+        <div className='plholder'>
+          <div>Password : </div>
+          <input type='text' onChange={(event) => setPassword(event.target.value)} placeholder='password'></input>
+        </div>
+        <button onClick={submitall} className='nextbt'>Submit</button>
       </div>
     </div>
   );

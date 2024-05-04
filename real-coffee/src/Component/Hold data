@@ -5,8 +5,6 @@ import axios, { Axios } from 'axios';
 import swal from 'react-sweetalert2';
 
 function InstantCoffee() {
-  const [product_id , setProductid] = useState('');
-  const [phonenumber , setPhonenumber] = useState('');
   const[product , setProduct]= useState([]);
   
   useEffect(()=>{
@@ -24,23 +22,28 @@ function InstantCoffee() {
     })
   }
 
+
+
   const SubmitAddtoCart = (productId) => {
-    axios.post("http://127.0.0.1:8000/api/addtocart", { product_id: productId, phonenumber: sessionStorage.getItem('phonenumber') })
-      .then((response) => {
-        if (response.status === 201) {
-          swal("Success", response.data.message, "success");
-        } else if (response.status === 409) {
-          swal("Conflict", response.data.message, "warning");
-        } else if (response.status === 401) {
-          swal("Error", response.data.message, "error");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        swal("Error", error.response ? error.response.data.message || 'Something went wrong' : 'Network error', "error");
-      });
+    const phonenumber =sessionStorage.getItem('phonenumber');
+    axios.post("http://127.0.0.1:8000/api/addtocart", {phonenumber, product_id: productId })
+    .then((response) => {
+      if (response.status === 201) {
+        swal("Success", response.data.message, "success");
+      } else if (response.status === 409) {
+        swal("Conflict", response.data.message, "warning");
+      } else if (response.status === 401) {
+        swal("Error", response.data.message, "error");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      swal("Error", error.response ? error.response.data.message || 'Something went wrong' : 'Network error', "error");
+    });
   };
 
+
+ 
   
 
 
@@ -101,3 +104,4 @@ function InstantCoffee() {
 }
 
 export default InstantCoffee
+

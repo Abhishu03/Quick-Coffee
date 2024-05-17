@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CoffeeShopController;
 use App\Http\Controllers\cartController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CoffeeShopSecondController;
 
 
 /*
@@ -29,11 +30,28 @@ Route::post('/password',[CoffeeShopController::class ,'password']);
 Route::post('/existlogin', [Controller::class , 'existlogin']);
 ///////////////////////////////////////////////////////////////////////
 
-Route::post('/addtocart',[cartController:: class , 'addtocart']);
+///// Cart functions 
+Route::get('/singleuser/{phnumber}', [CoffeeShopSecondController::class , 'getsingleuser']);
+Route::post('/addcopon', [CoffeeShopSecondController::class , 'addcopon']);
 
-///// Instant Coffee
+///////////////////////////////////////////////////////////////////////
+Route::post('/addtocart',[cartController:: class , 'addtocart']);
+Route::get('/getfromcarttable/{phonenumber}', [CoffeeShopSecondController::class , 'getcarttable']);
+Route::get('/productfromcarttoshow/{id}', [CoffeeShopSecondController::class , 'productfromcarttoshow']);
+Route::delete('/productdeletefromcart/{phonenumber}/{product_id}', [CoffeeShopSecondController::class , 'deleteproductfromcart']);
+
+
+
+///// All Product Catagory
+Route::post('/addcatagory',[CoffeeShopSecondController::class , 'addcatagory']);
+Route::get('/addcatagory', [CoffeeShopSecondController::class , 'getallcatagory']);
+///////////////////////////////////////////////////////////////////////////////////
+
+
+///// Instant Coffee // products
 Route::post('/instantcoffee' ,[CoffeeShopController::class , 'instantcoffee']);
 Route::get('/instantcoffee' , [CoffeeShopController::class , 'getinstantcoffee']);   
+Route::get('/instantcoffee/{porduct_catagory}' , [CoffeeShopSecondController::class , 'getinstantcoffeeofsinglecatagory']);   
 Route::get('/instantcoffee/{product_name}' , [CoffeeShopController::class , 'getinstantcoffeeone']);
 Route::delete('/instantcoffee/{id}' , [CoffeeShopController::class , 'deleteinstantcoffee']);
 /////////////////////////////////////////////////////////////////////////////////////////

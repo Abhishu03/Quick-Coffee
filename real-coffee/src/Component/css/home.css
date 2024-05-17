@@ -67,6 +67,7 @@
     margin: 22px 0px 22px ;
 }
 
+/* {/////////////////////////} */
 .product-group{
     display: grid;
     position: relative;
@@ -74,7 +75,6 @@
 }
 
 .product-box{
-    /* border: black 2px solid; */
     margin: 12px 19px ; 
     text-align: center;
     background-color: rgb(253, 235, 214);
@@ -85,12 +85,11 @@
     background-color: rgb(254, 208, 152);
 }
 
-.productimg{
-    height: 350px;
-    width: 350px;
+.productimghomepage{
+    height: 232px;
+    width: 292px;
     border-radius: 23px;
     padding-top:12px ;
-
 }
 
 .product-name{
@@ -123,6 +122,8 @@
     color: aliceblue;
     width: auto;
 }
+
+/* {/////////////////////////} */
 
 .text-b {
     font-size: 24px;

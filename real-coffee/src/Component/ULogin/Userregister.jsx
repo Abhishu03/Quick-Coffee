@@ -20,7 +20,7 @@ function Userregister() {
     try {
       await submitDetails();
       await submitpassword();
-      alert('data added');
+      
     } catch (error) {
       console.error(error);
       alert('Error occurred - point 1');
@@ -36,6 +36,7 @@ function Userregister() {
           setName('');
           setEmail('');
           setPhonenumber('');
+          alert('data added');
           // navigate('/ULogin/passwordholder'); 
         } else {
           alert('Error occored - point 2');
@@ -43,7 +44,8 @@ function Userregister() {
       })
       .catch((error) => {
         console.error(error);
-        alert(`Error - point 3: ${error.response.data.message || 'Registration failed'}`);
+        // alert(`Error - point 3: ${error.response.data.message || 'Registration failed'}`);
+        alert('user already exists ');
       });
     
   };
@@ -62,7 +64,8 @@ function Userregister() {
       })
       .catch((error) => {
         console.error(error);
-        alert(`Error - point 5: ${error.response.data.message || 'Registration failed'}`);
+        // alert(`Error - point 5: ${error.response.data.message || 'Registration failed'}`);
+        alert('try again');
       });
     
   };

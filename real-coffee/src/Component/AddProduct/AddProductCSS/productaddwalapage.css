@@ -1,67 +1,65 @@
-/* Basic styles */
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+/* Styling for the overall container */
+.container-productaddwala {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 55vh;
+  background-color: #f5f5f5;
 }
 
-.container {
-  width: 80%; /* Adjust width as needed */
-  margin: 0 auto; /* Center horizontally */
+/* Styling for the 'aa' section  */
+.aa {
+  display: flex;
+  flex-direction: row; /* change to row */
+  justify-content: space-between; /* space between items */
+  width: 80%;
+  margin: 0 auto;
   padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Table styles */
-table {
-  width: 100%;
-  border-collapse: collapse; /* Remove borders between cells */
+/* Styling for the 'aaa' section */
+.aaa {
+  display: flex ;
+  flex-direction: column;
+  align-items: center;
 }
 
-th,
-td {
-  padding: 10px;
-  height: 60px;
-  border: 0; /* Add a light border */
-}
-
-/* Category name styles */
-.category-ka-name {
-  font-weight: bold; /* Make category names stand out */
-}
-
-/* Product row styles */
-.product-instantcofee-wala,
-.product-coldbrew-wala,
-.product-filtercoffee-wala,
-.product-bundle-wala {
-  cursor: pointer; /* Indicate clickable rows */
-}
-
-.product-instantcofee-wala:hover,
-.product-coldbrew-wala:hover,
-.product-filtercoffee-wala:hover,
-.product-bundle-wala:hover {
-  background-color: #f5f5f5; /* Add a hover effect */
-}
-
-/* Button styles */
-.button {
-  background-color: #4CAF50; /* Green color */
+/* Styling for buttons (`productbt` and `productcatbt`) */
+.productbt,
+.productcatbt {
+  background-color: #4CAF50;
   color: white;
+  margin-top: 46px;
+  margin-left: 76px;
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
-  /* cursor: pointer;  */
-  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.button a {
+.productbt:hover,
+.productcatbt:hover {
+  background-color: #3e8e41;
+}
+
+/* Link styling within buttons (optional) */
+.productbt a,
+.productcatbt a {
   color: white;
   text-decoration: none;
 }
 
+/* Styling for the 'aab' section */
+.aab {
+  text-align: center;
+}
 
-.button:hover {
-  background-color: #48ac4b; /* Green color */
- 
+/* Image styling */
+img {
+  max-width: 200px;
 }

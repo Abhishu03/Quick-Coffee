@@ -1,26 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import swal from 'react-sweetalert2';
+import { useNavigate } from 'react-router-dom';
 import './PCCSS/instcoffee.css';
 
 function InstantCoffee() {
   const [product, setProduct] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() => {   
     getproduct();
   }, []);
 
   const getproduct = () => {
-    axios.get("http://127.0.0.1:8000/api/instantcoffee")
+    const product_catagory = 'Instant coffee';
+    axios.get(`http://127.0.0.1:8000/api/instantcoffee/${product_catagory}`)
       .then((res) => {
-        setProduct(res.data.msg);
+        setProduct(res.data.data);
       })
       .catch((err) => {
         alert(`Error-01: ${err.res.data.message || 'data fail'}`);
       });
   }
 
+  const SubmitAddtoCart = (productId) => {  
+    const phoneNumber = sessionStorage.getItem('phonenumber'); 
+    if(phoneNumber){
+      axios.post("http://127.0.0.1:8000/api/addtocart", { product_id: productId, phonenumber: phoneNumber })
+        .then((response) => {
+          if (response.status === 200) {
+            alert("Product added successfully!");
+          } else if (response.status === 409) {
+            alert("Product already exists in the cart.");
+          } else if (response.status === 401) {
+            alert("Unauthorized access. Please login.");
+          }
   
+        })
+        .catch((error) => {
+          console.error(error);
+          swal("Error", error.response ? error.response.data.message || 'Something went wrong' : 'Network error', "error");
+        });
+    }
+    else{
+      alert("please login First");
+      navigate('/ULogin/Userlogin');
+    }
+  };
 
   return (
     <React.Fragment>
@@ -44,12 +70,12 @@ function InstantCoffee() {
                     <td>{instantcoffee.product_price}</td>
                     <td><img src={instantcoffee.product_img} alt="" height={91} width={90} /></td>
                     <td>{instantcoffee.product_description}</td>
-                    <td><button>Add to cart</button></td>
+                    <td><button onClick={() => SubmitAddtoCart(instantcoffee.id)}>Add to cart</button></td>
                   </tr>
                 ))
               }
             </tbody>
-          </div>
+          </div>  
         </div>
       </div>
     </React.Fragment>

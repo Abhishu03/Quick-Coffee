@@ -1,0 +1,79 @@
+.paymentkamainbody {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+  }
+  
+  .paymentheading {
+    text-align: center;
+  }
+  
+  .paymenttypeselectdiv {
+    margin-top: 20px;
+  }
+  
+  .paymentselectlebel {
+    display: block;
+  }
+  
+  .paymetntypeselectdropdown {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  .paymentdropopt {
+    padding: 5px;
+  }
+  
+  .upiidinputform,
+  .carddetailsform {
+    margin-top: 20px;
+  }
+  
+  .divtoinupidetails,
+  .carddetailsformdiv {
+    margin-bottom: 10px;
+  }
+  
+  .enterupiidlabel,
+  .carddetailslabel {
+    display: block;
+  }
+  
+  .upiidinputbox,
+  .cardinfoinputall {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .paymentsubmitbutton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .paymentsubmitbutton:hover {
+    background-color: #0056b3;
+  }
+  
+  .upiqrcodediv {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .upiqrcodetext {
+    margin-bottom: 10px;
+  }
+  
+  .qrcodescan {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: auto;
+  }
+  

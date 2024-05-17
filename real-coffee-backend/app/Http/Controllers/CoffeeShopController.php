@@ -8,7 +8,9 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\pinstantcoffee;
 use App\Models\pinstantcoffeeone;
+use App\Models\Allproducts;
 use App\Models\pcoldbrew;
+use App\Models\CatagoryProduct;
 use App\Models\filtercoffee;
 use App\Models\bundles;
 use App\Models\userReview;
@@ -45,7 +47,7 @@ class CoffeeShopController extends Controller
 
     // Instant Coffee ka Controller 
     public function instantcoffee(Request $request){
-        $request->validate([
+        $request->validate([  
             'product_img.*' => 'mimes:png,jpg,jpeg,svg,webp'
         ]);
 
@@ -53,24 +55,25 @@ class CoffeeShopController extends Controller
 
         Storage::disk('public')->put($imageName, file_get_contents($request->product_img));
 
+        $productinstantcoffee['product_catagory']=$request->product_catagory;
         $productinstantcoffee['product_name']=$request->product_name;
         $productinstantcoffee['product_img']=$imageName;
         $productinstantcoffee['product_price']=$request->product_price;
         $productinstantcoffee['product_description']=$request->product_description;
 
-        pinstantcoffee::create($productinstantcoffee);
+        Allproducts::create($productinstantcoffee);
         return response()->json(['msg'=>$productinstantcoffee] , 200);
     }
 
     public function getinstantcoffee(){
-        $getdata =pinstantcoffee::get();
+        $getdata =Allproducts::get(); 
         foreach($getdata as $key => $value){
             $getdata[$key]['product_img'] = env('APP_IMG_PATH').$value['product_img'];
         }
         return response()->json(["msg"=> $getdata] , 200);
     }
 
-    public function getinstantcoffeeone($product_name){
+    public function getinstantcoffeeone($product_name){  
         {
             $user = pinstantcoffee::where('product_name', $product_name)->first();
             if ($user) {
@@ -80,7 +83,7 @@ class CoffeeShopController extends Controller
             } else {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'User not found.',
+                    'message' => 'data not found.',
                 ], 404);
             }
         }

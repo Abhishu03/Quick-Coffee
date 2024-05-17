@@ -24,15 +24,29 @@ function Userlogin() {
     axios.post('http://127.0.0.1:8000/api/existlogin' , {phonenumber, password })
     .then((res)=>{
       if(res.status === 200){
-        navigate('/cart');
+        // navigate('/cart');
         sessionStorage.setItem('token', res.data.token);
         sessionStorage.setItem('phonenumber', res.data.phonenumber);
+        restone();
       }
       else console.log('error-01');
     }).catch((e)=> {
+      
       console.log(e);
     })
   }
+
+  const restone = () => {
+    const alphaone = sessionStorage.getItem('phonenumber');
+    if(alphaone === phonenumber){
+      navigate('/cart');
+    }
+    else{
+      alert("enter Correct phonenumber and Password");
+    }
+  }
+
+
   return (
     <div>
       <div className='mainbox'>

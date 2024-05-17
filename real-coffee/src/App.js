@@ -24,6 +24,11 @@ import ProductaddColdBrew from './Component/AddProduct/ColdBrewProductAdd';
 import Productaddfiltercoffee from './Component/AddProduct/Filtercoffeeproductadd';
 import ProductAddbundle from './Component/AddProduct/bundleproductadd';
 import Adminauth from './Component/SuplimentryPage/adminauth';
+import Testooo from './Component/textooo';
+import ProductCatagory from './Component/AddProduct/ProductCatagory';
+import Products from './Component/Getproduct/Products';
+import PaymentGateway from './Component/PaymentGateway';
+import Addcoupon from './Component/SuplimentryPage/newcouponadd';
 
 
 
@@ -57,6 +62,11 @@ function App() {
       <Route path='/AddProduct/filtercoffeeadd' exact element={<Productaddfiltercoffee/>}/>
       <Route path='/AddProduct/bundleadd' exact element={<ProductAddbundle/>}/>
       <Route path='/suplimentry/adminauth' exact element={<Adminauth/>}/>
+      <Route path='/testooo' exact element={<Testooo/>}/>
+      <Route path='/ProductCatagory/ProductCatagory' exact element={<ProductCatagory/>}/>
+      <Route path='/Getproduct/products' exact element={<Products/>}/>
+      <Route path='/paymentgateway' exact element={<PaymentGateway/>}/>
+      <Route path='/suplimentry/addcoupon' exact element={<Addcoupon/>}/>
     </Routes>
 
     <div>

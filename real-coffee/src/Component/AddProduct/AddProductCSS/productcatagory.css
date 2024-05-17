@@ -1,0 +1,61 @@
+/* Overall container styling */
+.product-catagory-wala-mainpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 110px 0 110px 0;
+    /* Adjust width and height as needed */
+    /* Consider using flexbox or a grid system for more layout control */
+  }
+  
+  /* 'productcat-addwala-box' section */
+  .productcat-addwala-box {
+    background-color: #fff;
+    border-radius: 5px;
+    width: 322px;
+    padding: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    /* Adjust width as needed */
+  }
+  
+  /* 'enternewcatagorytext' section */
+  .enternewcatagorytext {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* 'ProductCatagoryimputbox' section */
+  .ProductCatagoryimputbox {
+    margin-bottom: 15px;
+  }
+  
+  /* Input field styling */
+  .ProductCatagoryimputbox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  /* 'ProductCatagorysubmitbtdiv' section */
+  .ProductCatagorysubmitbtdiv {
+    text-align: center;
+  }
+  
+  /* Button styling */
+  .ProductCatagorysubmitbt {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .ProductCatagorysubmitbt:hover {
+    background-color: #3e8e41;
+  }
+  

@@ -1,0 +1,160 @@
+/* General Styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+  }
+  
+  .body-main-class {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Top User Message */
+  .top-user-mgs {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f5f5f5;
+  }
+  
+  /* Product Table */
+  .all-product-table {
+    width: 100%;
+  }
+  
+  .table-head {
+    background-color: #ddd;
+  }
+  
+  .table-head-row th {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .table-body-row td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Product Image */
+  .BodyTB.BodyTB img {
+    width: 50px;
+    height: auto;
+  }
+  
+  /* Quantity Buttons */
+  .BodyTB button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  /* Remove Button */
+  .BodyTB-deleteBT {
+    text-align: center;
+  }
+  
+  .deleteBTicon {
+    width: 20px;
+    height: auto;
+  }
+
+  .deleteBTicon:hover{
+    cursor: pointer;
+    width: 22px;
+    height: auto;
+
+  }
+  
+  /* Checkout Box */
+  .checkout-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .subtotal-ammount,
+  .shipping-charges,
+  .total-after-coupon {
+    margin-bottom: 10px;
+  }
+  
+  .coupon-div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .coupon-input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .coupon-apply-bt {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .checkout-bt {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    font-size: large;
+  }
+  .checkout-bt a{
+    text-decoration: none;
+  }
+  
+  .dropdownforweight {
+    width: 104px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .dropdownforweight option {
+    font-size: 14px;
+    padding: 8px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .quintitytoggleplus {
+   text-decoration: none;
+   background-color: white;
+   border-color: white;
+  }
+
+  .quintitytoggleplus:hover {
+    font-size: large;
+  }
+  
+  .quintitytoggleminus {
+    text-decoration: none;
+   background-color: white;
+   border-color: white;
+  }
+
+  .quintitytoggleminus:hover{
+    font-size: large;
+  }
+
+  
+  .realquintity {
+    padding: 0 10px;
+    font-size: 16px;
+  }
+  

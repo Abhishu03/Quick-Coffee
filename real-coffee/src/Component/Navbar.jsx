@@ -20,13 +20,26 @@ function Navbar() {
   const Userloginbt= () => {
     navigate('/ULogin/Userlogin');
   }
+
+  const cartconnect = () => {
+    const tokencheck = sessionStorage.getItem('phonenumber');
+    if(tokencheck){
+      navigate('/cart');
+    }
+    else{
+      alert("please login");
+      navigate('/ULogin/Userlogin');
+    }
+
+  }
+
+
   return (
     <div className='main'>
         <div className='logo'><Link to= '/'><img  className='Clogo' src={Clogo} /></Link></div>
         <ul className='navbarlist'>
-            <li className='bt'><Link to='/product'><a>Shop</a></Link></li>
-            <li className='bt'><Link to='/bestseller'><a>Bestseller</a></Link></li>
-            {/* <li className='bt'><Link to='/aboutus'><a>About Us</a></Link></li> */}
+            <li className='bt'><Link to='/Getproduct/products'><a>Shop</a></Link></li>
+            {/* <li className='bt'><Link to='/bestseller'><a>Bestseller</a></Link></li> */}
             <li className='bt'><Link to='/aboutus'><a>About Us</a></Link></li>
             <li className='bt'>
               {sessionStorage.token?
@@ -34,7 +47,7 @@ function Navbar() {
               (<img src={Userlogo} onClick={Userloginbt} className='userlogo'  />) 
             }
             </li>
-            <li className='bt'><Link to= '/cart'><img  className='cartlogo' src={Cartlogo} /></Link></li>
+            <li className='bt'><img onClick={cartconnect} className='cartlogo' src={Cartlogo} /></li>
         </ul>
     </div>
   )

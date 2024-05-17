@@ -1,107 +1,129 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import './PCCSS/instcoffee.css';  
-import axios, { Axios } from 'axios';
-import swal from 'react-sweetalert2';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import DeleteBT from '../Banner/Delete button.png';
+import './css/cart.css';
 
-function InstantCoffee() {
-  const[product , setProduct]= useState([]);
-  
-  useEffect(()=>{
-    getproduct();
-  },[]);
+function Cart() {
+  const [singleuser, setSingleuser] = useState(null);
+  const [fromcartdata, setFromcartdata] = useState(null);
+  const [producttoshow, setProducttoshow] = useState(null);
 
-  const getproduct = () => {
-    axios.get("http://127.0.0.1:8000/api/instantcoffee")
-    .then((res)=>{
-      setProduct(res.data.msg);
-      // console.log(res.data.msg);
-    })
-    .catch((err)=> {
-      alert(`Error-01: ${err.res.data.message || 'data fail'}`); 
-    })
+  useEffect(() => {
+    getdatafromcart();
+    getoneuser();
+  }, []);
+
+  useEffect(() => {
+    if (fromcartdata) {
+      getproductstoshow(fromcartdata);
+    }
+  }, [fromcartdata]);
+
+  const getoneuser = () => {
+    const phnumber = sessionStorage.getItem('phonenumber');
+    if (phnumber) {
+      axios.get(`http://127.0.0.1:8000/api/singleuser/${phnumber}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setSingleuser(res.data.data.name);
+          } else {
+            console.log("error place 02")
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+        });
+    }
   }
 
+  const getdatafromcart = () => {
+    const phnumbercart = sessionStorage.getItem('phonenumber');
+    if (phnumbercart) {
+      axios.get(`http://127.0.0.1:8000/api/getfromcarttable/${phnumbercart}`)
+        .then((res) => {
+          if (res.status === 200) {
+            const extractedData = res.data.msg.map(item => item.product_id);
+            setFromcartdata(extractedData);
+          } else {
+            console.log("error place 01")
+          }
+        })
+    }
+  }
 
+  // console.log(fromcartdata);
+  const getproductstoshow = () => {
+    if (fromcartdata && Array.isArray(fromcartdata) && fromcartdata.length > 0) {
+      fromcartdata.forEach(productId => {
+        axios.get(`http://127.0.0.1:8000/api/productfromcarttoshow/${productId}`)
+          .then((res) => {
+            if (res.status === 200) {
+             
+              setProducttoshow(res.data.data);
+              // console.log(res.data.data);
+           
+            } else {
+              console.log("Error fetching products:", res.statusText);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching product data:', error);
+          });
+      });
+    } else {
+      console.log("No data provided to fetch products.");
+    }
+  }
+  
+  
+  
 
-  const SubmitAddtoCart = (productId) => {
-    const phonenumber =sessionStorage.getItem('phonenumber');
-    axios.post("http://127.0.0.1:8000/api/addtocart", {phonenumber, product_id: productId })
-    .then((response) => {
-      if (response.status === 201) {
-        swal("Success", response.data.message, "success");
-      } else if (response.status === 409) {
-        swal("Conflict", response.data.message, "warning");
-      } else if (response.status === 401) {
-        swal("Error", response.data.message, "error");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      swal("Error", error.response ? error.response.data.message || 'Something went wrong' : 'Network error', "error");
-    });
-  };
-
-
+  console.log(producttoshow);
  
-  
 
 
-  // const SubmitAddtoCart = (e) => {
-  //   e.preventDefault();
-  //   axios.post("http://127.0.0.1:8000/api/addtocart", { product_id: product.id, phonenumber: sessionStorage.getItem('phonenumber') })
-  //     .then((response) => {
-  //       if (response.status === 200) {
-  //         const updatedProductID = response.data.product_id;
-  //         const updatedPhoneNumber = response.data.phonenumber;
-  
-  //         setProductid(updatedProductID);
-  //         setPhonenumber(updatedPhoneNumber);
-  //       } else {
-  //         alert('Error 01');
-  //       }
-  //     }).catch((error) => {
-  //       console.error(error);
-  //       alert(`Error - Point 2: ${error.response ? error.response.data.message || 'Registration failed' : 'Network error'}`);
-  //     });
-  // }
-  
-
-
-  
   return (
-    <React.Fragment>
-      <div className='main-box-ics'>
-        <div className='sub1'>
-          <div className='sub2'>
-            <h4>Instant Coffee</h4>
-            <thead>
-              <tr className='ics-tableheading-row'>
-                <th className='ics-tableheading' scope='col'>Product Name</th>
-                <th className='ics-tableheading' scope='col'>Product Price</th>
-                <th className='ics-tableheading' scope='col'>Product image</th>
-                <th className='ics-tableheading' scope='col'>Product Description</th>
+   <React.Fragment>
+    <div className='body-main-class'>
+
+      <div className='top-user-mgs'> wellcome {singleuser}</div>
+
+      <div className='all-product-table'>
+        <thead className='table-head'>
+        <tr className='table-head-row'>
+          <th className='heading'>Product Name</th>
+          <th className='heading'>Product Imaage</th>
+          <th className='heading'>Weight</th>
+          <th className='heading'>Quantity</th>
+          <th className='heading'>Subtotal</th>
+          <th className='heading'>Remove</th>
+        </tr>
+        </thead>
+        <tbody className='table-body'>
+            {producttoshow && producttoshow.map((productfromcarttoshow, index) => (
+              <tr className='table-body-row' key={index}>
+                <td className='BodyTB'>{productfromcarttoshow.product_name}</td>
+                <td className='BodyTB'><img src={productfromcarttoshow.product_img} alt="" height={91} width={90} /></td>
+                <td className='BodyTB'>250g</td>
+                <td className='BodyTB'>- 1 +</td>
+                <td className='BodyTB'>524</td>
+                <td className='BodyTB-deleteBT'><img className='deleteBTicon' src={DeleteBT} alt="" /></td>
               </tr>
-            </thead>
-            <tbody>                       
-              {
-                product.map((instantcoffee, index)=> (
-                  <tr key={index}>
-                    <td>{instantcoffee.product_name}</td>
-                    <td>{instantcoffee.product_price}</td>
-                    <td><img src={instantcoffee.product_img} alt="" height={91} width={90} /></td>    
-                    <td>{instantcoffee.product_description}</td>
-                    <td><button onClick={SubmitAddtoCart}>Add to cart</button></td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </div>    
-        </div>
+            ))}
+          </tbody>
       </div>
-    </React.Fragment>
+      
+      {/* <div className='checkout-box'>
+          <div className='subtotal-ammount'>Subtotal: 2000</div>
+          <div className='shipping-charges'>Shipping Charges : 70</div>
+          <div className='coupon-div'>Add coupon : <input className='coupon-input' placeholder='COFFEEzz'/><button className='coupon-apply-bt'>Apply</button></div>
+          <div className='total-after-coupon'>Total: 2040</div>
+          <div className='checkout-div'><button className='checkout-bt'>Checkout</button></div>
+      </div> */}
+
+    </div>
+   </React.Fragment>
   )
 }
 
-export default InstantCoffee
-
+export default Cart

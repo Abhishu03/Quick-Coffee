@@ -16,29 +16,29 @@ function Home() {
       <div className='Banner'>
        <img className='mainbnaaerr' src={Mainbnaaer}></img>
         <p><LinearGradient gradient={['to left', '#edf6f9 ,#1c1cc4']}>~~Divine and Flavorsome~~</LinearGradient></p>
-        <button><Link to='/bestseller'><a>Shop Now</a></Link></button>
+        <button><Link to='/Getproduct/products'><a>Shop Now</a></Link></button>
       </div>
       <div className='text-after-banner'>
         Home Grown brands making best coffee
       </div>
       <div className='product-group'>
         <div className='product-box'>
-          <img className='productimg' src={Instantcoffee}></img>
+          <img className='productimghomepage' src={Instantcoffee}></img>
           <p className='product-name'>Instant Coffee</p>
           <button><Link to='/ProductCatagory/InstantCoffee'><a>Shop now</a></Link></button>
         </div>
         <div className='product-box'>
-          <img className='productimg' src={Coldbrew}></img>
+          <img className='productimghomepage' src={Coldbrew}></img>
           <p className='product-name'>Cold Brew</p>
           <button><Link to='/ProductCatagory/ColdBrew'><a>Shop now</a></Link></button>
         </div>
         <div className='product-box'>
-          <img className='productimg' src={Filtercoffee}></img>
+          <img className='productimghomepage' src={Filtercoffee}></img>
           <p className='product-name'>Filter Coffee</p>
           <button><Link to='/ProductCatagory/FilterCoffee'><a>Shop now</a></Link></button>
         </div>
         <div className='product-box'>
-          <img className='productimg' src={Bundle}></img>
+          <img className='productimghomepage' src={Bundle}></img>
           <p className='product-name'>Bundle</p>
           <button><Link to='/ProductCatagory/Bundle'><a>Shop now</a></Link></button>
         </div>

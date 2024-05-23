@@ -1,61 +1,60 @@
-/* Overall container styling */
+/* AddProductCSS/productcatagory.css */
+
 .product-catagory-wala-mainpage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 110px 0 110px 0;
-    /* Adjust width and height as needed */
-    /* Consider using flexbox or a grid system for more layout control */
-  }
-  
-  /* 'productcat-addwala-box' section */
-  .productcat-addwala-box {
-    background-color: #fff;
-    border-radius: 5px;
-    width: 322px;
-    padding: 20px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    /* Adjust width as needed */
-  }
-  
-  /* 'enternewcatagorytext' section */
-  .enternewcatagorytext {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  /* 'ProductCatagoryimputbox' section */
-  .ProductCatagoryimputbox {
-    margin-bottom: 15px;
-  }
-  
-  /* Input field styling */
-  .ProductCatagoryimputbox input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-  }
-  
-  /* 'ProductCatagorysubmitbtdiv' section */
-  .ProductCatagorysubmitbtdiv {
-    text-align: center;
-  }
-  
-  /* Button styling */
-  .ProductCatagorysubmitbt {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .ProductCatagorysubmitbt:hover {
-    background-color: #3e8e41;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.productcat-addwala-box {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.enternewcatagorytext {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.ProductCatagoryimputbox input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-control-img {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.ProductCatagorysubmitbtdiv {
+  text-align: center;
+}
+
+.ProductCatagorysubmitbt {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ProductCatagorysubmitbt:hover {
+  background-color: #0056b3;
+}

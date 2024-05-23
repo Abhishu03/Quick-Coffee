@@ -11,6 +11,12 @@ function Userlogin() {
   const [phonenumber,setPhonenumber] = useState('');
   const [password , setPassword] = useState('');
 
+   // FOR MACHINE RUN 
+    // const baseURL = 'http://127.0.0.1:8000/api';
+    // FOR LOCAL WIFI NETWORK RUN
+    const baseURL = 'http://192.168.1.17:8000/api'; 
+
+
   const phonenumberlg= (event) =>{
     setPhonenumber(event.target.value);
   }
@@ -21,7 +27,7 @@ function Userlogin() {
 
   const SubmitLogin = (e) => {
     e.preventDefault();
-    axios.post('http://127.0.0.1:8000/api/existlogin' , {phonenumber, password })
+    axios.post(`${baseURL}/existlogin` , {phonenumber, password })
     .then((res)=>{
       if(res.status === 200){
         // navigate('/cart');
@@ -42,7 +48,7 @@ function Userlogin() {
       navigate('/cart');
     }
     else{
-      alert("enter Correct phonenumber and Password");
+      alert("Enter Correct Phone-Number or Password");
     }
   }
 

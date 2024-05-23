@@ -46,7 +46,7 @@ class CoffeeShopController extends Controller
     
 
     // Instant Coffee ka Controller 
-    public function instantcoffee(Request $request){
+    public function instantcoffee(Request $request){    
         $request->validate([  
             'product_img.*' => 'mimes:png,jpg,jpeg,svg,webp'
         ]);

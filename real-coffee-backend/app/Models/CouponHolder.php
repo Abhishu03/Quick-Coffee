@@ -9,8 +9,8 @@ class CouponHolder extends Model
 {
     use HasFactory;
 
-    protected $table= '_coupon_holder';
+    protected $table= 'coupon_holder';
     protected $fillable=[
-         'coupon'
-    ];
+        'coupon' ,'ammount'
+   ];
 }

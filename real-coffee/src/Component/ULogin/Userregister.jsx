@@ -20,6 +20,8 @@ function Userregister() {
     try {
       await submitDetails();
       await submitpassword();
+
+      navigate('/ULogin/Userlogin');
       
     } catch (error) {
       console.error(error);
@@ -27,10 +29,15 @@ function Userregister() {
     }
   };
 
+   // FOR MACHINE RUN 
+    // const baseURL = 'http://127.0.0.1:8000/api';
+    // FOR LOCAL WIFI NETWORK RUN
+    const baseURL = 'http://192.168.1.17:8000/api'; 
+
 
   const submitDetails = (e) => {
     // e.preventDefault();
-    axios.post('http://127.0.0.1:8000/api/register', { name, email, phnumber })
+    axios.post(`${baseURL}/register`, { name, email, phnumber })
       .then((response) => {
         if (response.status === 200) {
           setName('');
@@ -53,7 +60,7 @@ function Userregister() {
 
   const submitpassword = (e) => {
     // e.preventDefault();
-    axios.post('http://127.0.0.1:8000/api/password', { phonenumber, password })
+    axios.post(`${baseURL}/password`, { phonenumber, password })
       .then((response) => {
         if (response.status === 200) {
           setPhonenumberaa('');

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // http://localhost:5000/testooo
 
 const Textooo = () => {
@@ -6,11 +8,15 @@ const Textooo = () => {
 
   const thebox = () => {
     setSelected(!selected);
+    
   };
+
+  const datan = 5 ;
   
   return (
     <div>
       <div>Cart</div>
+      <div><Link to="/"  state={{ data: datan }}>DAAAATAAAA... </Link></div>
       <div 
         className='boxkiclass'
         style={{

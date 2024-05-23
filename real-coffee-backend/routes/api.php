@@ -6,6 +6,7 @@ use App\Http\Controllers\CoffeeShopController;
 use App\Http\Controllers\cartController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CoffeeShopSecondController;
+use App\Http\Middleware\Portcontrol;
 
 
 /*
@@ -33,6 +34,8 @@ Route::post('/existlogin', [Controller::class , 'existlogin']);
 ///// Cart functions 
 Route::get('/singleuser/{phnumber}', [CoffeeShopSecondController::class , 'getsingleuser']);
 Route::post('/addcopon', [CoffeeShopSecondController::class , 'addcopon']);
+Route::get('/getcopon', [CoffeeShopSecondController::class , 'getcopon']);
+Route::get('/getcopon/{coupon}', [CoffeeShopSecondController::class , 'getcoponammount']);
 
 ///////////////////////////////////////////////////////////////////////
 Route::post('/addtocart',[cartController:: class , 'addtocart']);

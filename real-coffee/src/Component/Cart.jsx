@@ -8,9 +8,15 @@ function Cart() {
   const [singleuser, setSingleuser] = useState(null);
   const [fromcartdata, setFromcartdata] = useState(null);
   const [producttoshow, setProducttoshow] = useState([]);
-  const [deletethisproduct, setDeletethisproduct] = useState('');
   const [quantityOfProducts, setQuantityOfProducts] = useState({});
   const [weightOfProducts, setWeightOfProducts] = useState({});
+  const [inputcopon, setInputcopon] = useState('');
+  const [copundiscount, setCopundiscount] = useState('');
+
+  // For Local Machine 
+  // const baseURL = 'http://127.0.0.1:8000/api';
+  // For Local Network
+  const baseURL = 'http://192.168.1.17:8000/api'; 
 
 
   useEffect(() => {
@@ -39,12 +45,12 @@ function Cart() {
   const getoneuser = () => {
     const phnumber = sessionStorage.getItem('phonenumber');
     if (phnumber) {
-      axios.get(`http://127.0.0.1:8000/api/singleuser/${phnumber}`)
+      axios.get(`${baseURL}/singleuser/${phnumber}`)
         .then((res) => {
           if (res.status === 200) {
             setSingleuser(res.data.data.name);
           } else {
-            console.log("error place 02")
+            console.error("Error fetching user data:", res.status, res.statusText);
           }
         })
         .catch(error => {
@@ -56,30 +62,50 @@ function Cart() {
   const getdatafromcart = () => {
     const phnumbercart = sessionStorage.getItem('phonenumber');
     if (phnumbercart) {
-      axios.get(`http://127.0.0.1:8000/api/getfromcarttable/${phnumbercart}`)
+      axios.get(`${baseURL}/getfromcarttable/${phnumbercart}`)
         .then((res) => {
           if (res.status === 200) {
             const extractedData = res.data.msg.map(item => item.product_id);
             setFromcartdata(extractedData);
           } else {
-            console.log("error place 01")
+            console.error("Error fetching cart data:", res.status, res.statusText);
           }
         })
+        .catch(error => {
+          console.error('Error fetching cart data:', error);
+        });
     }
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const getcopondiscount = () => {
+    if (inputcopon) {
+      axios.get(`${baseURL}/getcopon/${inputcopon}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setCopundiscount(res.data.data.ammount);
+            console.log("Coupon discount:", res.data.data.ammount);
+          } else {
+            console.error("Error fetching coupon data:", res.status, res.statusText);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching coupon data:', error);
+        });
+    } else {
+      console.error("No coupon input provided");
+    }
+  }
+
   const getproductstoshow = (fromcartdata) => {
     if (fromcartdata && Array.isArray(fromcartdata) && fromcartdata.length > 0) {
       let products = []; // Accumulate products here
       const promises = fromcartdata.map(productId => {
-        return axios.get(`http://127.0.0.1:8000/api/productfromcarttoshow/${productId}`)
+        return axios.get(`${baseURL}/productfromcarttoshow/${productId}`)
           .then((res) => {
             if (res.status === 200) {
               products.push(res.data.data); // Push product data into the array
-              console.log(res.data.data);
             } else {
-              console.log("Error fetching products:", res.statusText);
+              console.error("Error fetching products:", res.status, res.statusText);
             }
           })
           .catch(error => {
@@ -95,35 +121,29 @@ function Cart() {
           console.error('Error resolving product promises:', error);
         });
     } else {
-      console.log("No data provided to fetch products.");
+      console.error("No data provided to fetch products.");
     }
   }
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const deleteproduct = (productIndex, innerIndex) => {
     const productId = producttoshow[productIndex][innerIndex].id;
     const dtproduct = window.confirm('Are you sure you want to delete this product?');
     if (dtproduct) {
       const phnumbercarttodelete = sessionStorage.getItem('phonenumber');
-      axios.delete(`http://127.0.0.1:8000/api/productdeletefromcart/${phnumbercarttodelete}/${productId}`)
+      axios.delete(`${baseURL}/productdeletefromcart/${phnumbercarttodelete}/${productId}`)
         .then((res) => {
           if (res.status === 200) {
             alert("Product Deleted");
             const updatedProducts = [...producttoshow];
             updatedProducts[productIndex].splice(innerIndex, 1);
             setProducttoshow(updatedProducts);
+          } else {
+            console.error("Error deleting product:", res.status, res.statusText);
           }
         })
         .catch((error) => {
-          if (error.response) {
-            alert(`Error: ${error.response.status} - ${error.response.data.message}`);
-          } else if (error.request) {
-            console.error('No response received:', error.request);
-          } else {
-            console.error('Error:', error.message);
-          }
-        })
+          console.error('Error deleting product:', error);
+        });
     }
   }
 
@@ -137,7 +157,7 @@ function Cart() {
   const decrementQuantity = (productId) => {
     setQuantityOfProducts(prevState => ({
       ...prevState,
-      [productId]: prevState[productId] - 1
+      [productId]: Math.max(1, prevState[productId] - 1) // Prevent quantity from going below 1
     }));
   };
 
@@ -166,13 +186,18 @@ function Cart() {
     return total.toFixed(2);
   };
 
- 
-
+  const justcoupontryaldata = (couponDiscountValue) => {
+    console.log("Place2 - " + couponDiscountValue);
+    const subtotalabb = parseFloat(calculateSubtotalAllProducts());
+    const discountabb = parseFloat(couponDiscountValue) || 0;
+    const totalabb = subtotalabb - discountabb + 70;
+    return totalabb.toFixed(2);
+  }
 
   return (
     <React.Fragment>
       <div className='body-main-class'>
-      <div className='top-user-mgs'> welcome {singleuser}</div>
+        <div className='top-user-mgs'> welcome {singleuser}</div>
         <div className='all-product-table'>
           <thead className='table-head'>
             <tr className='table-head-row'>
@@ -206,7 +231,6 @@ function Cart() {
                     <button className='quintitytoggleminus' onClick={() => decrementQuantity(product.id)}>-</button>
                   </td>
                   <td className='BodyTB'>{calculateSubtotalofproduct(product.id, product.product_price).toFixed(2)}</td>
-                  {/* Pass the productIndex and innerIndex to the deleteproduct function */}
                   <td className='BodyTB-deleteBT'><img className='deleteBTicon' onClick={() => deleteproduct(productIndex, innerIndex)} src={DeleteBT} alt="" /></td>
                 </tr>
               ))
@@ -214,16 +238,22 @@ function Cart() {
           </tbody>
         </div>
 
-         <div className='checkout-box'>
+        <div className='checkout-box'>
           <div className='subtotal-ammount'>Subtotal: {calculateSubtotalAllProducts()}</div>
           <div className='shipping-charges'>Shipping Charges : 70</div>
-          <div className='coupon-div'>Add coupon : <input className='coupon-input' placeholder='COFFEEzz'/><button className='coupon-apply-bt'>Apply</button></div>
-          <div className='total-after-coupon'>Total: {(parseFloat(calculateSubtotalAllProducts())+70).toFixed(2)}</div>
-          <div className='checkout-div'><button className='checkout-bt'><Link to='/paymentgateway'><a>Checkout</a></Link></button></div>
-      </div>
+          <div className='coupon-div'>
+            Add coupon: 
+            <input onChange={(event) => setInputcopon(event.target.value)} className='coupon-input' placeholder='COFFEEzz'/>
+            <button onClick={getcopondiscount} className='coupon-apply-bt'>Apply</button>
+          </div>
+          <div className='total-after-coupon'>Total: {justcoupontryaldata(copundiscount)}</div>
+          <div className='checkout-div'>
+            <button className='checkout-bt'><Link to='/paymentgateway'>Checkout</Link></button>
+          </div>
+        </div>
       </div>
     </React.Fragment>
-  )
+  );
 }
 
 export default Cart;

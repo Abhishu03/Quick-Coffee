@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import ReactHelmet from 'react-helmet';
 import { Route , Router, Routes} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Home from './Component/Home';
 import ProductOne from './Component/Productpage';
 import Navbar from './Component/Navbar';
@@ -72,7 +73,7 @@ function App() {
     <div>
       <Footer/>
     </div>
-
+    
 
    </>
   );

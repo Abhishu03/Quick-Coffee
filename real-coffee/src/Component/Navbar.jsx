@@ -42,7 +42,7 @@ function Navbar() {
             {/* <li className='bt'><Link to='/bestseller'><a>Bestseller</a></Link></li> */}
             <li className='bt'><Link to='/aboutus'><a>About Us</a></Link></li>
             <li className='bt'>
-              {sessionStorage.token?
+              {sessionStorage.token && sessionStorage.phonenumber?
               (<img onClick={Userlogoutbt} className='userlogout' src={Userlogout}></img>): 
               (<img src={Userlogo} onClick={Userloginbt} className='userlogo'  />) 
             }

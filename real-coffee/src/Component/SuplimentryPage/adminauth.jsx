@@ -11,6 +11,12 @@ function AdminAuth() {
     if (Aid === '2020' && Apassword === '2020') {
       navigate('/AddproductsHolder');
     }
+    else if (Aid === '1212' && Apassword === '1212') {
+      navigate('/AddproductsHolder');
+    }
+    else{
+      alert("Enter Correct ID & Password");
+    }
   }
 
   return (
@@ -20,7 +26,7 @@ function AdminAuth() {
         <div className="admin-number-box">
           <label className="col-sm-lbn">Admin Number</label>
           <div className="col-sm-acc">
-            <input type="text" className="form-control" onChange={(e) => setAid(e.target.value)}/>
+            <input type="text" className="form-control-an" onChange={(e) => setAid(e.target.value)}/>
           </div>
         </div>
 

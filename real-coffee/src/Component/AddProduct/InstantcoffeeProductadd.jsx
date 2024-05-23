@@ -15,12 +15,21 @@ function InstantcoffeeProductadd() {
   const [categoryData, setCategoryData] = useState([]);
   const [selectedValue, setSelectedValue] = useState('');
 
+  
+   // For Local Machine 
+  // const baseURL = 'http://127.0.0.1:8000/api';
+  // For Local Network
+  const baseURL = 'http://192.168.1.17:8000/api'; 
+
+
   useEffect(() => {
     fetchData();
   }, []);
 
+
+
   const fetchData = async () => {
-   axios.get(`http://127.0.0.1:8000/api/addcatagory`)
+   axios.get(`${baseURL}/addcatagory`)
    .then((res)=> {
     if(res.status === 200){
       setCategoryData(res.data.msg);
@@ -52,7 +61,7 @@ function InstantcoffeeProductadd() {
     formData.append('product_img', Pimg);
     formData.append('product_description' , pdescription);  
 
-    const responce = await axios.post("http://127.0.0.1:8000/api/instantcoffee" , formData, {
+    const responce = await axios.post(`${baseURL}/instantcoffee` , formData, {
       headers:{'content-Type':"multipalpart/form-data"},
     });
 

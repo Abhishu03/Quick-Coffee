@@ -63,8 +63,9 @@
 .text-after-banner{
     text-align: center;
     font-size: larger;
-    font-family: cursive;
     margin: 22px 0px 22px ;
+    font-family: "Satisfy", cursive;
+    font-style: normal;
 }
 
 /* {/////////////////////////} */

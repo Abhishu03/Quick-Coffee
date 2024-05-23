@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('catagoryofproduct', function (Blueprint $table) {
+        Schema::create('coupon_holder', function (Blueprint $table) {
             $table->id();
-            $table->string('product_catagory');
+            $table->string('coupon');
+            $table->integer('ammount');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('catagoryofproduct');
+        Schema::dropIfExists('coupon_holder');
     }
 };

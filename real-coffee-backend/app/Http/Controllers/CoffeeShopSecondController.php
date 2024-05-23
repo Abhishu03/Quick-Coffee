@@ -48,13 +48,26 @@ class CoffeeShopSecondController extends Controller
         return response()->json(["msg"=> $getdata] , 200);
     }
 
+    // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     public function addcatagory (Request $request){
+        $request->validate([  
+            'catagory_image.*' => 'mimes:png,jpg,jpeg,svg,webp'
+        ]);
+
+        $imageName = time().$request->file('catagory_image')->getClientOriginalName();
+
+        Storage::disk('public')->put($imageName, file_get_contents($request->catagory_image));
+
+        
         $shop_user['product_catagory']=$request->product_catagory;
+        $shop_user['catagory_image']=$imageName;
         
 
         CatagoryProduct::create($shop_user);
         return response()->json(['data'=>$shop_user] , 200);
     }
+
+    // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
     public function getcarttable($phonenumber){
         $getcartdata =Cart::where('phonenumber', $phonenumber)->get();
@@ -92,9 +105,29 @@ class CoffeeShopSecondController extends Controller
 
     public function addcopon(Request $request){
         $newcopon['coupon']=$request->coupon;
+        $newcopon['ammount']=$request->ammount;
 
         CouponHolder::create($newcopon);
         return response()->json(['msg'=>$newcopon]);
+    }
+
+    public function getcopon(){
+        $getdata =CouponHolder::get();
+        return response()->json(["msg"=> $getdata] , 200);
+    }
+
+    public function getcoponammount($coupon){
+       {
+        $user= CouponHolder::where('coupon', $coupon)->first();
+            if($user){
+                return response()->json(['data' => $user,],200);
+            }else{
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Coupoun not found.',
+                ], 404);
+            }
+       }
     }
 
 }

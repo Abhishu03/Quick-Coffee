@@ -1,0 +1,28 @@
+/* productreview.css */
+
+.reviewpagemaindiv {
+    /* Styles for the main div */
+    padding: 20px , 20px , 0px , 20px;
+    background-color: #ffffff; /* White background */
+    border: 2px solid #cccccc; /* Light gray border */
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    text-align: center;
+}
+
+.reviewpagemaindiv .reviewpagemaindiv {
+    /* Styles for the nested div */
+    font-style: italic;
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 25px;
+    color: #666666; /* Gray text color */
+}
+
+.reviewimage img {
+    /* Styles for the image */
+    max-width: 235px;
+    height: auto;
+    margin-top: 20px; /* Adjust as needed */
+}
